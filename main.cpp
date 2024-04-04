@@ -10,6 +10,7 @@ int main() {
     bool triangleCompleted = false;
     bool quadrilateralCompleted = false;
 
+    //Вершини фігур, задані кортежем
     std::tuple<double, double> tr_point1;
     std::tuple<double, double> tr_point2;
     std::tuple<double, double> tr_point3;
@@ -24,6 +25,7 @@ int main() {
         tr_point2 = input_geom::inputTriangle2();
         tr_point3 = input_geom::inputTriangle3();
 
+        // Перевірка, чи утворюють точки трикутник
         std::string is_triangle = geometry::returnTriangle(tr_point1, tr_point2, tr_point3);
 
         std::cout << is_triangle << std::endl;
@@ -40,6 +42,7 @@ int main() {
         q_point3 = input_geom::inputQuadrilateral3();
         q_point4 = input_geom::inputQuadrilateral4();
 
+        // Перевірка, чи утворюють точки чотирикутник
         std::string is_quadrilateral = geometry::returnQuadrilateral(q_point1, q_point2, q_point3, q_point4);
 
         std::cout << is_quadrilateral << std::endl;
@@ -50,6 +53,7 @@ int main() {
 
     } while (!quadrilateralCompleted);
 
+    // Перевірка, чи міститься чотирикутник у трикутнику
     bool quadrilateralInTriangle = geometry::isQuadrilateralInTriangle(q_point1, q_point2, q_point3, q_point4, tr_point1, tr_point2, tr_point3);
 
     if (quadrilateralInTriangle) {

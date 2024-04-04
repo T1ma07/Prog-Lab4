@@ -61,6 +61,7 @@ namespace geometry {
         return print;
     }
 
+    // Функція для обчислення площі трикутника
     double triangleArea(std::tuple<double, double> P, std::tuple<double, double> Q, std::tuple<double, double> R) {
         double PQ = sqrt(pow(std::get<0>(Q) - std::get<0>(P), 2) + pow(std::get<1>(Q) - std::get<1>(P), 2));
         double QR = sqrt(pow(std::get<0>(R) - std::get<0>(Q), 2) + pow(std::get<1>(R) - std::get<1>(Q), 2));
@@ -73,52 +74,21 @@ namespace geometry {
         return S;
     };
 
+    bool areEqual(double a, double b, double epsilon) { //Додаткова функція для урівнювання похибки чисел після коми
+        return fabs(a - b) < epsilon;
+    }
+
+    /* Перевірка, чи належить чотирикутник трикутнику за допомогою аналізу кожної точки на належність трикутнику завдяки
+     * побудові трикутників, одною вершиною кожного є обрана нами точка чотирикутника, а інші - вершини трикутника.
+     * Якщо площа трикутника співпадає з сумою площ створених додаткових трикутників, то ця точка міститься в трикутнику */
     bool isQuadrilateralInTriangle(std::tuple<double, double> A, std::tuple<double, double> B, std::tuple<double, double> C, std::tuple<double, double> D,
                                    std::tuple<double, double> P, std::tuple<double, double> Q, std::tuple<double, double> R) {
-        bool a, b, c, d = false;
 
         double S_triangle = triangleArea(P, Q, R);
 
-        double S_quadrilateralA_1 = triangleArea(P, Q, A);
-        double S_quadrilateralA_2 = triangleArea(P, A, R);
-        double S_quadrilateralA_3 = triangleArea(A, Q, R);
-
-        if (S_triangle == S_quadrilateralA_1 + S_quadrilateralA_2 + S_quadrilateralA_3) {
-            a = true;
-        } else {
-            return false;
-        }
-
-        double S_quadrilateralB_1 = triangleArea(P, Q, B);
-        double S_quadrilateralB_2 = triangleArea(P, B, R);
-        double S_quadrilateralB_3 = triangleArea(B, Q, R);
-
-        if (S_triangle == S_quadrilateralB_1 + S_quadrilateralB_2 + S_quadrilateralB_3) {
-            b = true;
-        } else {
-            return false;
-        }
-
-        double S_quadrilateralC_1 = triangleArea(P, Q, C);
-        double S_quadrilateralC_2 = triangleArea(P, C, R);
-        double S_quadrilateralC_3 = triangleArea(C, Q, R);
-
-        if (S_triangle == S_quadrilateralC_1 + S_quadrilateralC_2 + S_quadrilateralC_3) {
-            c = true;
-        } else {
-            return false;
-        }
-
-        double S_quadrilateralD_1 = triangleArea(P, Q, D);
-        double S_quadrilateralD_2 = triangleArea(P, D, R);
-        double S_quadrilateralD_3 = triangleArea(D, Q, R);
-
-        if (S_triangle == S_quadrilateralD_1 + S_quadrilateralD_2 + S_quadrilateralD_3) {
-            d = true;
-        } else {
-            return false;
-        }
-
-        return a && b && c && d;
+        return areEqual(S_triangle, triangleArea(P, Q, A) + triangleArea(P, A, R) + triangleArea(A, Q, R)) &&
+               areEqual(S_triangle, triangleArea(P, Q, B) + triangleArea(P, B, R) + triangleArea(B, Q, R)) &&
+               areEqual(S_triangle, triangleArea(P, Q, C) + triangleArea(P, C, R) + triangleArea(C, Q, R)) &&
+               areEqual(S_triangle, triangleArea(P, Q, D) + triangleArea(P, D, R) + triangleArea(D, Q, R));
     }
 }

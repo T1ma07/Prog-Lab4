@@ -7,4 +7,8 @@ add_executable(Labs main.cpp
         print.h
         print.cpp
         geom.h
-        geom.cpp)
+        geom.cpp
+        point.h
+        point.cpp
+        triangle.h
+        triangle.cpp)

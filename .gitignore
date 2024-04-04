@@ -1,0 +1,7 @@
+.idea
+CMakeLists.txt
+cmake-build-debug
+point.cpp
+point.h
+triangle.cpp
+triangle.h

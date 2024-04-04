@@ -6,18 +6,17 @@ int main() {
     logging::printAuthorInfo(); // Функція виведення інформації про автора
     logging::printTaskInfo();   // Функція виведення завдання лабораторної
 
-    double tr_point1;
-    double tr_point2;
-    double tr_point3;
+    std::tuple<double, double> tr_point1 = input_geom::inputTriangle1();
+    std::tuple<double, double> tr_point2 = input_geom::inputTriangle2();
+    std::tuple<double, double> tr_point3 = input_geom::inputTriangle3();
 
-    std::cout << "Enter first point of triangle:" << std::endl;
-    std::cin >> tr_point1;
+    bool is_triangle = geometry::isTriangle(tr_point1, tr_point2, tr_point3);
+    if (is_triangle) {
+        std::cout << "The points form a triangle." << std::endl;
+    } else {
+        std::cout << "The points do not form a triangle." << std::endl;
+    }
 
-    std::cout << "Enter second point of triangle:" << std::endl;
-    std::cin >> tr_point2;
-
-    std::cout << "Enter third point of triangle:" << std::endl;
-    std::cin >> tr_point3;
 
     std::cout << "Task completed." << std::endl; // Виводимо повідомлення про завершення роботи програми
     return 0;

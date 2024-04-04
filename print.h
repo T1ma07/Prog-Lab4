@@ -10,7 +10,11 @@ namespace input_geom {
     std::tuple<double, double> inputTriangle1();
     std::tuple<double, double> inputTriangle2();
     std::tuple<double, double> inputTriangle3();
-    double inputQuadrilateral();
+
+    std::tuple<double, double> inputQuadrilateral1();
+    std::tuple<double, double> inputQuadrilateral2();
+    std::tuple<double, double> inputQuadrilateral3();
+    std::tuple<double, double> inputQuadrilateral4();
 }
 
 #endif

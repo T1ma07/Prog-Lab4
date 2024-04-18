@@ -11,9 +11,7 @@ namespace logging {
     void printTaskInfo() {
         std::cout << "Task: check if quadrilateral fits in the triangle" << std::endl << "------------------------------" << std::endl;
     }
-}
 
-namespace input_geom {
     std::tuple<double, double> inputTriangle1() {
         double tr_point1_x, tr_point1_y;
 
@@ -116,6 +114,5 @@ namespace input_geom {
 
         std::tuple<double, double> q_point4 = std::make_tuple(q_point4_x, q_point4_y);
 
-        return q_point4;
-    }
+        return q_point4;}
 }

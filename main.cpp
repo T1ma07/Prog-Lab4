@@ -21,9 +21,9 @@ int main() {
     std::tuple<double, double> q_point4;
 
     do {
-        tr_point1 = input_geom::inputTriangle1();
-        tr_point2 = input_geom::inputTriangle2();
-        tr_point3 = input_geom::inputTriangle3();
+        tr_point1 = logging::inputTriangle1();
+        tr_point2 = logging::inputTriangle2();
+        tr_point3 = logging::inputTriangle3();
 
         // Перевірка, чи утворюють точки трикутник
         std::string is_triangle = geometry::returnTriangle(tr_point1, tr_point2, tr_point3);
@@ -37,10 +37,10 @@ int main() {
     } while (!triangleCompleted);
 
     do {
-        q_point1 = input_geom::inputQuadrilateral1();
-        q_point2 = input_geom::inputQuadrilateral2();
-        q_point3 = input_geom::inputQuadrilateral3();
-        q_point4 = input_geom::inputQuadrilateral4();
+        q_point1 = logging::inputQuadrilateral1();
+        q_point2 = logging::inputQuadrilateral2();
+        q_point3 = logging::inputQuadrilateral3();
+        q_point4 = logging::inputQuadrilateral4();
 
         // Перевірка, чи утворюють точки чотирикутник
         std::string is_quadrilateral = geometry::returnQuadrilateral(q_point1, q_point2, q_point3, q_point4);

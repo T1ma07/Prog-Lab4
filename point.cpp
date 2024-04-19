@@ -1,4 +1,7 @@
 #include "point.h"
+#include "geom.h"
 #include <string>
 
-//Point point() {}
+namespace geometry {
+
+}

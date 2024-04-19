@@ -1,6 +1,7 @@
 #include "geom.h"
 #include <string>
 #include <cmath>
+#include <iostream>
 
 namespace geometry {
     bool isTriangle(std::tuple<double, double> point1, std::tuple<double, double> point2, std::tuple<double, double> point3) {
@@ -39,26 +40,22 @@ namespace geometry {
                diagonal1 + diagonal2 > side4;
     }
 
-    std::string returnTriangle(std::tuple<double, double> point1, std::tuple<double, double> point2, std::tuple<double, double> point3) {
+    void returnTriangle(std::tuple<double, double> point1, std::tuple<double, double> point2, std::tuple<double, double> point3) {
         bool is_triangle = isTriangle(point1, point2, point3);
-        std::string print;
         if (is_triangle) {
-            print = "The points form a triangle.";
+            std::cout << "The points form a triangle." << std::endl;
         } else {
-            print = "The points do not form a triangle. Try again";
+            std::cout << "The points do not form a triangle. Try again" << std::endl;
         }
-        return print;
     }
 
-    std::string returnQuadrilateral(std::tuple<double, double> point1, std::tuple<double, double> point2, std::tuple<double, double> point3, std::tuple<double, double> point4) {
+    void returnQuadrilateral(std::tuple<double, double> point1, std::tuple<double, double> point2, std::tuple<double, double> point3, std::tuple<double, double> point4) {
         bool is_quadrilateral = isQuadrilateral(point1, point2, point3, point4);
-        std::string print;
         if (is_quadrilateral) {
-            print = "The points form a quadrilateral.";
+            std::cout << "The points form a quadrilateral." << std::endl;
         } else {
-            print = "The points do not form a quadrilateral. Try again";
+            std::cout << "The points do not form a quadrilateral. Try again" << std::endl;
         }
-        return print;
     }
 
     // Функція для обчислення площі трикутника
@@ -81,14 +78,19 @@ namespace geometry {
     /* Перевірка, чи належить чотирикутник трикутнику за допомогою аналізу кожної точки на належність трикутнику завдяки
      * побудові трикутників, одною вершиною кожного є обрана нами точка чотирикутника, а інші - вершини трикутника.
      * Якщо площа трикутника співпадає з сумою площ створених додаткових трикутників, то ця точка міститься в трикутнику */
-    bool isQuadrilateralInTriangle(std::tuple<double, double> A, std::tuple<double, double> B, std::tuple<double, double> C, std::tuple<double, double> D,
+    void isQuadrilateralInTriangle(std::tuple<double, double> A, std::tuple<double, double> B, std::tuple<double, double> C, std::tuple<double, double> D,
                                    std::tuple<double, double> P, std::tuple<double, double> Q, std::tuple<double, double> R) {
 
         double S_triangle = triangleArea(P, Q, R);
 
-        return areEqual(S_triangle, triangleArea(P, Q, A) + triangleArea(P, A, R) + triangleArea(A, Q, R)) &&
-               areEqual(S_triangle, triangleArea(P, Q, B) + triangleArea(P, B, R) + triangleArea(B, Q, R)) &&
-               areEqual(S_triangle, triangleArea(P, Q, C) + triangleArea(P, C, R) + triangleArea(C, Q, R)) &&
-               areEqual(S_triangle, triangleArea(P, Q, D) + triangleArea(P, D, R) + triangleArea(D, Q, R));
+        if (areEqual(S_triangle, triangleArea(P, Q, A) + triangleArea(P, A, R) + triangleArea(A, Q, R)) &&
+            areEqual(S_triangle, triangleArea(P, Q, B) + triangleArea(P, B, R) + triangleArea(B, Q, R)) &&
+            areEqual(S_triangle, triangleArea(P, Q, C) + triangleArea(P, C, R) + triangleArea(C, Q, R)) &&
+            areEqual(S_triangle, triangleArea(P, Q, D) + triangleArea(P, D, R) + triangleArea(D, Q, R)))
+        {
+            std::cout << "Quadrilateral is in triangle!" << std::endl;
+        } else {
+            std::cout << "Quadrilateral isn't in triangle!" << std::endl;
+        }
     }
 }

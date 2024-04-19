@@ -1,6 +1,7 @@
 #include <iostream>
 #include "print.h"
 #include "geom.h"
+#include "point.h"
 
 int main() {
 
@@ -26,11 +27,9 @@ int main() {
         tr_point3 = logging::inputTriangle3();
 
         // Перевірка, чи утворюють точки трикутник
-        std::string is_triangle = geometry::returnTriangle(tr_point1, tr_point2, tr_point3);
+        geometry::returnTriangle(tr_point1, tr_point2, tr_point3);
 
-        std::cout << is_triangle << std::endl;
-
-        if (is_triangle == "The points form a triangle.") {
+        if (geometry::isTriangle(tr_point1, tr_point2, tr_point3)) {
             triangleCompleted = true;
         }
 
@@ -43,24 +42,16 @@ int main() {
         q_point4 = logging::inputQuadrilateral4();
 
         // Перевірка, чи утворюють точки чотирикутник
-        std::string is_quadrilateral = geometry::returnQuadrilateral(q_point1, q_point2, q_point3, q_point4);
+        geometry::returnQuadrilateral(q_point1, q_point2, q_point3, q_point4);
 
-        std::cout << is_quadrilateral << std::endl;
-
-        if (is_quadrilateral == "The points form a quadrilateral.") {
+        if (geometry::isQuadrilateral(q_point1, q_point2, q_point3, q_point4)) {
             quadrilateralCompleted = true;
         }
 
     } while (!quadrilateralCompleted);
 
     // Перевірка, чи міститься чотирикутник у трикутнику
-    bool quadrilateralInTriangle = geometry::isQuadrilateralInTriangle(q_point1, q_point2, q_point3, q_point4, tr_point1, tr_point2, tr_point3);
-
-    if (quadrilateralInTriangle) {
-        std::cout << "Quadrilateral is in triangle!" << std::endl;
-    } else {
-        std::cout << "Quadrilateral isn't in triangle!" << std::endl;
-    }
+    geometry::isQuadrilateralInTriangle(q_point1, q_point2, q_point3, q_point4, tr_point1, tr_point2, tr_point3);
 
     std::cout << "Task completed." << std::endl; // Виводимо повідомлення про завершення роботи програми
 

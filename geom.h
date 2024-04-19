@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef GEOM_H
 #define GEOM_H
 #include <string>

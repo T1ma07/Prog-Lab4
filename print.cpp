@@ -12,6 +12,12 @@ namespace logging {
         std::cout << "Task: check if quadrilateral fits in the triangle" << std::endl << "------------------------------" << std::endl;
     }
 
+    void printEnd() {
+        std::cout << "Task completed." << std::endl;
+    }
+
+    Log::~Log() = default;
+
     std::tuple<double, double> inputTriangle1() {
         double tr_point1_x, tr_point1_y;
 

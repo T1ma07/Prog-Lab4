@@ -8,6 +8,8 @@ namespace logging { // Простір імен для виводу інформ�
     public:
         void printAuthorInfo();
         void printTaskInfo();
+        void printEnd();
+        ~Log();
     };
     std::tuple<double, double> inputTriangle1();
     std::tuple<double, double> inputTriangle2();

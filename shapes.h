@@ -1,10 +1,9 @@
-#ifndef GEOM_H
-#define GEOM_H
+#ifndef SHAPE_H
+#define SHAPE_H
 #include <string>
 #include <tuple>
-#include "point.h"
 
-namespace geometry { // файл з класами Triangle та Quadrilateral
+namespace geometry {
     class Triangle {
     private:
         std::tuple<double, double> p1;

@@ -1,11 +1,12 @@
-#include <iostream>
 #include "print.h"
 #include "point.h"
+#include "shapes.h"
 
 int main() {
 
-    logging::printAuthorInfo(); // Функція виведення інформації про автора
-    logging::printTaskInfo();   // Функція виведення завдання лабораторної
+    logging::Log log;
+    log.printAuthorInfo();
+    log.printTaskInfo();
 
     bool triangleCompleted = false;
     bool quadrilateralCompleted = false;
@@ -20,15 +21,18 @@ int main() {
     std::tuple<double, double> q_point3;
     std::tuple<double, double> q_point4;
 
+    geometry::Point point(tr_point1, tr_point2, tr_point3, q_point1, q_point2, q_point3, q_point4);
+    geometry::Triangle triangle(tr_point1, tr_point2, tr_point3);
+    geometry::Quadrilateral quadrilateral(q_point1, q_point2, q_point3, q_point4);
     do {
         tr_point1 = logging::inputTriangle1();
         tr_point2 = logging::inputTriangle2();
         tr_point3 = logging::inputTriangle3();
 
         // Перевірка, чи утворюють точки трикутник
-        geometry::returnTriangle(tr_point1, tr_point2, tr_point3);
+        triangle.returnTriangle();
 
-        if (geometry::isTriangle(tr_point1, tr_point2, tr_point3)) {
+        if (triangle.checkTriangle()) {
             triangleCompleted = true;
         }
 
@@ -41,18 +45,18 @@ int main() {
         q_point4 = logging::inputQuadrilateral4();
 
         // Перевірка, чи утворюють точки чотирикутник
-        geometry::returnQuadrilateral(q_point1, q_point2, q_point3, q_point4);
+        quadrilateral.returnQuadrilateral();
 
-        if (geometry::isQuadrilateral(q_point1, q_point2, q_point3, q_point4)) {
+        if (quadrilateral.checkQuadrilateral()) {
             quadrilateralCompleted = true;
         }
 
     } while (!quadrilateralCompleted);
 
     // Перевірка, чи міститься чотирикутник у трикутнику
-    geometry::isQuadrilateralInTriangle(q_point1, q_point2, q_point3, q_point4, tr_point1, tr_point2, tr_point3);
+    point.isQuadrilateralInTriangle();
 
-    std::cout << "Task completed." << std::endl; // Виводимо повідомлення про завершення роботи програми
+    log.printEnd(); // Виводимо повідомлення про завершення роботи програми
 
     return 0;
 }

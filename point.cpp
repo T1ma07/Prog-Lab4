@@ -1,5 +1,4 @@
 #include "point.h"
-#include "geom.h"
 #include <string>
 
 namespace geometry {
@@ -14,23 +13,39 @@ namespace geometry {
         trPoints = {p1, p2, p3};
         qdPoints = {p4, p5, p6, p7};
     }
+    double Point::trArea(std::tuple<double, double> P, std::tuple<double, double> Q, std::tuple<double, double> R) {
+        double PQ = sqrt(pow(std::get<0>(Q) - std::get<0>(P), 2) + pow(std::get<1>(Q) - std::get<1>(P), 2));
+        double QR = sqrt(pow(std::get<0>(R) - std::get<0>(Q), 2) + pow(std::get<1>(R) - std::get<1>(Q), 2));
+        double PR = sqrt(pow(std::get<0>(R) - std::get<0>(P), 2) + pow(std::get<1>(R) - std::get<1>(P), 2));
 
-    Triangle::Triangle(std::tuple<double, double> x1, std::tuple<double, double> x2, std::tuple<double, double> x3) {
-        setPoints(x1, x2, x3);
-    }
-    void Triangle::setPoints(std::tuple<double, double> x1, std::tuple<double, double> x2, std::tuple<double, double> x3) {
-        p1 = x1;
-        p2 = x2;
-        p3 = x3;
-    }
-    bool Triangle::checkTriangle() {
-        double side1 = std::sqrt(std::pow(std::get<0>(p2) - std::get<0>(p1), 2) +
-                                 std::pow(std::get<1>(p2) - std::get<1>(p1), 2));
-        double side2 = std::sqrt(std::pow(std::get<0>(p3) - std::get<0>(p2), 2) +
-                                 std::pow(std::get<1>(p3) - std::get<1>(p2), 2));
-        double side3 = std::sqrt(std::pow(std::get<0>(p1) - std::get<0>(p3), 2) +
-                                 std::pow(std::get<1>(p1) - std::get<1>(p3), 2));
+        double p = (PQ + QR + PR)/2;
 
-        return side1 + side2 > side3 && side1 + side3 > side2 && side2 + side3 > side1;
+        double S = sqrt(p * (p - PQ) * (p - QR) * (p - PR));
+
+        return S;
+    }
+    bool Point::areEqual(double a, double b, double epsilon) {
+        return fabs(a - b) < epsilon;
+    }
+    void Point::isQuadrilateralInTriangle() {
+        std::tuple<double, double> P = std::get<0>(trPoints);
+        std::tuple<double, double> Q = std::get<1>(trPoints);
+        std::tuple<double, double> R = std::get<2>(trPoints);
+
+        std::tuple<double, double> A = std::get<0>(qdPoints);
+        std::tuple<double, double> B = std::get<1>(qdPoints);
+        std::tuple<double, double> C = std::get<2>(qdPoints);
+        std::tuple<double, double> D = std::get<3>(qdPoints);
+        double tr_area = Point::trArea(P, Q, R);
+
+        if (areEqual(tr_area, Point::trArea(P, Q, A) + Point::trArea(P, A, R) + Point::trArea(A, Q, R)) &&
+            areEqual(tr_area, Point::trArea(P, Q, B) + Point::trArea(P, B, R) + Point::trArea(B, Q, R)) &&
+            areEqual(tr_area, Point::trArea(P, Q, C) + Point::trArea(P, C, R) + Point::trArea(C, Q, R)) &&
+            areEqual(tr_area, Point::trArea(P, Q, D) + Point::trArea(P, D, R) + Point::trArea(D, Q, R)))
+        {
+            std::cout << "Quadrilateral is in triangle!" << std::endl;
+        } else {
+            std::cout << "Quadrilateral isn't in triangle!" << std::endl;
+        }
     }
 }

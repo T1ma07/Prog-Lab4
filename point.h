@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef GEOM_H
 #define GEOM_H
 #include <string>
@@ -19,18 +17,9 @@ namespace geometry {
               std::tuple<double, double> point4, std::tuple<double, double> point5, std::tuple<double, double> point6, std::tuple<double, double> point7);
         void setPoints(std::tuple<double, double> p1, std::tuple<double, double> p2, std::tuple<double, double> p3,
                        std::tuple<double, double> p4, std::tuple<double, double> p5, std::tuple<double, double> p6, std::tuple<double, double>p7);
-    };
-
-    class Triangle{
-    public:
-
-        std::tuple<double, double> p1;
-        std::tuple<double, double> p2;
-        std::tuple<double, double> p3;
-
-        Triangle(std::tuple<double, double> x1, std::tuple<double, double> x2, std::tuple<double, double> x3);
-        void setPoints(std::tuple<double, double> x1, std::tuple<double, double> x2, std::tuple<double, double> x3);
-        bool checkTriangle();
+        double trArea(std::tuple<double, double> p1, std::tuple<double, double> p2, std::tuple<double, double> p3);
+        bool areEqual(double a, double b, double epsilon = 1e-6);
+        void isQuadrilateralInTriangle();
     };
 }
 

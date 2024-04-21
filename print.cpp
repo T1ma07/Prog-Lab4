@@ -3,12 +3,12 @@
 #include "print.h"
 
 namespace logging {
-    void printAuthorInfo() {
+    void Log::printAuthorInfo() {
         std::cout << "Creator: Sotnikov Tymur" << std::endl;
         std::cout << "Group: K-14" << std::endl;
     }
 
-    void printTaskInfo() {
+    void Log::printTaskInfo() {
         std::cout << "Task: check if quadrilateral fits in the triangle" << std::endl << "------------------------------" << std::endl;
     }
 

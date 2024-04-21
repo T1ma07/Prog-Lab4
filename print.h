@@ -3,9 +3,12 @@
 #ifndef PRINT_H
 #define PRINT_H
 
-namespace logging { // Простір імен для виводу інформації про автора
-    void printAuthorInfo();
-    void printTaskInfo();
+namespace logging { // Простір імен для виводу інформації
+    class Log {
+    public:
+        void printAuthorInfo();
+        void printTaskInfo();
+    };
     std::tuple<double, double> inputTriangle1();
     std::tuple<double, double> inputTriangle2();
     std::tuple<double, double> inputTriangle3();

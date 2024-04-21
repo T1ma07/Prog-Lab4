@@ -1,6 +1,5 @@
 #include <iostream>
 #include "print.h"
-#include "geom.h"
 #include "point.h"
 
 int main() {

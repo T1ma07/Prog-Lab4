@@ -1,5 +1,5 @@
-#ifndef GEOM_H
-#define GEOM_H
+#ifndef POINT_H
+#define POINT_H
 #include <string>
 #include <iostream>
 #include <cmath>

@@ -22,12 +22,14 @@ namespace geometry {
 
         return side1 + side2 > side3 && side1 + side3 > side2 && side2 + side3 > side1;
     }
-    void Triangle::returnTriangle() {
+    bool Triangle::returnTriangle() {
         bool is_triangle = checkTriangle();
         if (is_triangle) {
             std::cout << "The points form a triangle." << std::endl;
+            return true;
         } else {
             std::cout << "The points do not form a triangle. Try again" << std::endl;
+            return false;
         }
     }
 
@@ -66,12 +68,14 @@ namespace geometry {
                diagonal1 + diagonal2 > side3 &&
                diagonal1 + diagonal2 > side4;
     }
-    void Quadrilateral::returnQuadrilateral() {
+    bool Quadrilateral::returnQuadrilateral() {
         bool is_quadrilateral = checkQuadrilateral();
         if (is_quadrilateral) {
             std::cout << "The points form a quadrilateral." << std::endl;
+            return true;
         } else {
             std::cout << "The points do not form a quadrilateral. Try again" << std::endl;
+            return false;
         }
     }
 }

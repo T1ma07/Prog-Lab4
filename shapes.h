@@ -14,7 +14,7 @@ namespace geometry {
         Triangle(std::tuple<double, double> x1, std::tuple<double, double> x2, std::tuple<double, double> x3);
         void setPoints(std::tuple<double, double> x1, std::tuple<double, double> x2, std::tuple<double, double> x3);
         bool checkTriangle();
-        void returnTriangle();
+        bool returnTriangle();
     };
 
     class Quadrilateral {
@@ -28,7 +28,7 @@ namespace geometry {
         Quadrilateral(std::tuple<double, double> x1, std::tuple<double, double> x2, std::tuple<double, double> x3, std::tuple<double, double> x4);
         void setPoints(std::tuple<double, double> x1, std::tuple<double, double> x2, std::tuple<double, double> x3, std::tuple<double, double> x4);
         bool checkQuadrilateral();
-        void returnQuadrilateral();
+        bool returnQuadrilateral();
     };
 }
 

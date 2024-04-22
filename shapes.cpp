@@ -12,6 +12,7 @@ namespace geometry {
         p2 = x2;
         p3 = x3;
     }
+    // Перевіряємо, чи формують задані точки трикутник
     bool Triangle::checkTriangle() {
         double side1 = std::sqrt(std::pow(std::get<0>(p2) - std::get<0>(p1), 2) +
                                  std::pow(std::get<1>(p2) - std::get<1>(p1), 2));
@@ -22,6 +23,7 @@ namespace geometry {
 
         return side1 + side2 > side3 && side1 + side3 > side2 && side2 + side3 > side1;
     }
+    // Повертаємо обчислення
     bool Triangle::returnTriangle() {
         bool is_triangle = checkTriangle();
         if (is_triangle) {
@@ -44,6 +46,7 @@ namespace geometry {
         p3 = x3;
         p4 = x4;
     }
+    // Перевіряємо, чи формують задані точки чотирикутник
     bool Quadrilateral::checkQuadrilateral() {
         double side1 = std::sqrt(std::pow(std::get<0>(p2) - std::get<0>(p1), 2) +
                                  std::pow(std::get<1>(p2) - std::get<1>(p1), 2));
@@ -68,6 +71,7 @@ namespace geometry {
                diagonal1 + diagonal2 > side3 &&
                diagonal1 + diagonal2 > side4;
     }
+    // Повертаємо обчислення
     bool Quadrilateral::returnQuadrilateral() {
         bool is_quadrilateral = checkQuadrilateral();
         if (is_quadrilateral) {

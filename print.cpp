@@ -18,6 +18,7 @@ namespace logging {
         std::cout << "Task completed." << std::endl;
     }
 
+    // Отримання точок трикутника
     std::array<std::tuple<double, double>, 3> inputTriangle() {
         double tr_point1_x, tr_point1_y, tr_point2_x, tr_point2_y, tr_point3_x, tr_point3_y;
 
@@ -51,6 +52,7 @@ namespace logging {
         return {tr_point1, tr_point2, tr_point3};
     }
 
+    // Отримання точок чотирикутника
     std::array<std::tuple<double, double>, 4> inputQuadrilateral() {
         double q_point1_x, q_point1_y, q_point2_x, q_point2_y, q_point3_x, q_point3_y, q_point4_x, q_point4_y;
 
